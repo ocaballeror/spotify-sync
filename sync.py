@@ -61,21 +61,20 @@ while True:
     offset += page
 
 # Get the local list of albums
-if os.path.isfile('lib.pickle'):
-    with open('lib.pickle', 'rb') as f:
+if os.path.isfile('.cache-musiclib'):
+    with open('.cache-musiclib', 'rb') as f:
         songs = pickle.load(f)
 else:
     music_home = os.path.expanduser('~/Music')
     mp3files = glob.iglob(music_home + '/**/*.mp3', recursive=True)
     songs = set(Song.from_filename(f) for f in mp3files)
-    print(len(songs), list(songs)[:5])
-    with open('lib.pickle', 'wb') as f:
+    with open('.cache-musiclib', 'wb') as f:
         pickle.dump(songs, f)
 library = set((song.artist, song.album) for song in songs)
 
 # Load the cached album url list
-if os.path.isfile('album_urls.pickle'):
-    with open('album_urls.pickle', 'rb') as f:
+if os.path.isfile('.cache-album_urls'):
+    with open('.cache-album_urls', 'rb') as f:
         album_urls = pickle.load(f)
 else:
     album_urls = dict()
@@ -92,7 +91,7 @@ for artist, album in library:
         print("Could not get url for", album)
 
 # Save the cached urls
-with open('album_urls.pickle', 'wb') as f:
+with open('.cache-album_urls', 'wb') as f:
     pickle.dump(album_urls, f)
 
 # Use the urls to filter out albums we already have
