@@ -17,9 +17,9 @@ keys and you are ready to go.
 
 ## Python stuff
 An unspoken rule among the python community forces me to instruct you on how to
-install dependencies so you don't forget.
+install dependencies.
 
-Simply run
+In case you forgot how to do it, you just have to run
 ```
 pip install requirements.txt
 ```
