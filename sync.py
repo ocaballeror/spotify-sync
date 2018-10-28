@@ -97,6 +97,9 @@ with open('.cache-album_urls', 'wb') as f:
 # Use the urls to filter out albums we already have
 curr_urls = set(curr_albums.values())
 album_urls = {a: u for a, u in album_urls.items() if u not in curr_urls}
+if not album_urls:
+    print('Everything is up to date')
+    sys.exit(0)
 pprint(album_urls)
 
 # Actually add the new albums to our remote collection
