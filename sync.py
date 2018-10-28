@@ -30,6 +30,7 @@ if len(sys.argv) < 2:
 with open('config.json') as f:
     config = json.load(f)
 
+
 # Get our authentication going
 username = sys.argv[1]
 scope = 'user-library-read, user-library-modify'
@@ -60,6 +61,7 @@ while True:
         break
     offset += page
 
+
 # Get the local list of albums
 if os.path.isfile('.cache-musiclib'):
     with open('.cache-musiclib', 'rb') as f:
@@ -72,12 +74,14 @@ else:
         pickle.dump(songs, f)
 library = set((song.artist, song.album) for song in songs)
 
+
 # Load the cached album url list
 if os.path.isfile('.cache-album_urls'):
     with open('.cache-album_urls', 'rb') as f:
         album_urls = pickle.load(f)
 else:
     album_urls = dict()
+
 
 # Get the urls for all the albums we don't already have
 for artist, album in library:
@@ -90,9 +94,11 @@ for artist, album in library:
     except Exception:
         print("Could not get url for", album)
 
+
 # Save the cached urls
 with open('.cache-album_urls', 'wb') as f:
     pickle.dump(album_urls, f)
+
 
 # Use the urls to filter out albums we already have
 curr_urls = set(curr_albums.values())
@@ -101,6 +107,7 @@ if not album_urls:
     print('Everything is up to date')
     sys.exit(0)
 pprint(album_urls)
+
 
 # Actually add the new albums to our remote collection
 for chunk in chunker(list(album_urls.values()), 20):
