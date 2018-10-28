@@ -1,0 +1,2 @@
+lyricfetch>=1.0.3
+spotipy>=2.4.4
