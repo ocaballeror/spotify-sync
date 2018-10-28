@@ -37,6 +37,11 @@ authenticate your Spotify account. Accept the permissions request, and paste
 the URL you were redirected to into the console. You can now go to your Spotify
 library and see new albums start to pop up.
 
+## Gotchas
+* This app just adds new albums to your collection. Removing may come as a feature sometime.
+* The app works on an album-by-album basis because that's easier to work with (much fewer requests). Sorry.
+* You local music collection is hard-coded to be in `~/Music`. Edit the code if you don't like that.
+
 ## Credit
 All credit must go to the [spotipy](https://github.com/plamere/spotipy)
 library, which made all of this possible.
